@@ -9,6 +9,7 @@ A wine pairing service that helps you find the perfect wine to pair with your fo
 ## Table of Contents
 
 - [Built With](#built-with)
+- [Database ERD](#database-erd)
 - [Authors](#authors)
 - [License](#license)
 
@@ -19,6 +20,10 @@ A wine pairing service that helps you find the perfect wine to pair with your fo
 - [JPA](https://spring.io/projects/spring-data-jpa) - Database ORM
 - [Gradle](https://gradle.org/) - Dependency Management
 - [MariaDB](https://mariadb.org/) - Database
+
+## Database ERD
+
+![ERD](doc/images/vinami_erd.png)
 
 ## Authors
 
