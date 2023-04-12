@@ -16,7 +16,13 @@ public class FoodService {
         this.foodRepository = foodRepository;
     }
 
-    public FoodEntity findByFoodName(String name) {
-        return foodRepository.findByName(name);
+    public String findByFoodName(String name) {
+        FoodEntity foodEntity = foodRepository.findByName(name);
+        return foodEntity.getNameKorean();
+    }
+
+    public String findByFoodNameKorean(String nameKorean) {
+        FoodEntity foodEntity = foodRepository.findByNameKorean(nameKorean);
+        return foodEntity.getName();
     }
 }
