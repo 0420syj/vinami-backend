@@ -36,5 +36,5 @@ out/
 ### VS Code ###
 .vscode/
 
-### DB - CloudType ###
-**/application-cloudtype.properties
+### DB - Local ###
+application-local.properties
