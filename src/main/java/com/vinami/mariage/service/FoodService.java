@@ -2,10 +2,7 @@ package com.vinami.mariage.service;
 
 import com.vinami.mariage.entity.FoodEntity;
 import com.vinami.mariage.repository.FoodRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class FoodService {
@@ -18,11 +15,15 @@ public class FoodService {
 
     public String findByFoodName(String name) {
         FoodEntity foodEntity = foodRepository.findByName(name);
-        return foodEntity.getNameKorean();
+        String foodInfo;
+        foodInfo = foodEntity.getName() + " : " + foodEntity.getNameKorean();
+        return foodInfo;
     }
 
     public String findByFoodNameKorean(String nameKorean) {
         FoodEntity foodEntity = foodRepository.findByNameKorean(nameKorean);
-        return foodEntity.getName();
+        String foodInfo;
+        foodInfo = foodEntity.getName() + " : " + foodEntity.getNameKorean();
+        return foodInfo;
     }
 }

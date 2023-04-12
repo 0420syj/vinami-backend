@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/foods")
 public class FoodController {
 
-    @Autowired
-    private FoodService foodService;
+
+    private final FoodService foodService;
+
+    public FoodController(FoodService foodService) {
+        this.foodService = foodService;
+    }
 
     @GetMapping("/name")
     public String findByFoodName(String name) {
