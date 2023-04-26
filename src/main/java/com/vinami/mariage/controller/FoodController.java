@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/foods")
 public class FoodController {
@@ -25,5 +27,10 @@ public class FoodController {
     @GetMapping("/korean")
     public String findByFoodNameKorean(String nameKorean) {
         return foodService.findByFoodNameKorean(nameKorean);
+    }
+
+    @GetMapping("/all")
+    public List<String> findAll() {
+        return foodService.findAll();
     }
 }
