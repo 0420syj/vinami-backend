@@ -1,0 +1,45 @@
+name: Deploy to cloudtype
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Connect deploy key
+        uses: cloudtype-github-actions/connect@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          ghtoken: ${{ secrets.GHP_TOKEN }}
+      - name: Deploy
+        uses: cloudtype-github-actions/deploy@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          project: vinami/vinami
+          stage: main
+          yaml: |
+            name: vinami-backend
+            app: java@17
+            options:
+              ports: 8080
+              env:
+                - name: DB_HOST
+                  value: svc.sel3.cloudtype.app
+                - name: DB_PORT
+                  value: "31398"
+                - name: DB_NAME
+                  value: vinami
+                - name: DB_USERNAME
+                  value: root
+                - name: DB_PASSWORD
+                  secret: mariadb-root-password
+                - name: SPRING_PROFILES_ACTIVE
+                  value: prod
+            context:
+              git:
+                url: git@github.com:${{ github.repository }}.git
+                ref: ${{ github.ref }}
+              preset: java-springboot
