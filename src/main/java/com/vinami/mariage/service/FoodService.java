@@ -1,10 +1,12 @@
 package com.vinami.mariage.service;
 
+import com.vinami.mariage.dto.FoodDTO;
 import com.vinami.mariage.entity.FoodEntity;
 import com.vinami.mariage.repository.FoodRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FoodService {
@@ -17,20 +19,21 @@ public class FoodService {
 
     public String findByFoodName(String name) {
         FoodEntity foodEntity = foodRepository.findByName(name);
-        String foodInfo;
-        foodInfo = foodEntity.getName() + " : " + foodEntity.getNameKorean();
-        return foodInfo;
+        FoodDTO foodDTO = foodEntity.convertToDTO();
+        return foodDTO.toString();
     }
 
     public String findByFoodNameKorean(String nameKorean) {
         FoodEntity foodEntity = foodRepository.findByNameKorean(nameKorean);
-        String foodInfo;
-        foodInfo = foodEntity.getName() + " : " + foodEntity.getNameKorean();
-        return foodInfo;
+        FoodDTO foodDTO = foodEntity.convertToDTO();
+        return foodDTO.toString();
     }
 
     public List<String> findAll() {
         List<FoodEntity> foodEntityList = foodRepository.findAll();
-        return foodEntityList.stream().map(FoodEntity::getName).toList();
+        return foodEntityList.stream()
+                .map(FoodEntity::convertToDTO)
+                .map(FoodDTO::getName)
+                .collect(Collectors.toList());
     }
 }
