@@ -17,26 +17,22 @@ public class FoodService {
         this.foodRepository = foodRepository;
     }
 
-    private FoodDTO convertToDTO(FoodEntity foodEntity) {
-        return new FoodDTO(foodEntity.getName(), foodEntity.getNameKorean());
-    }
-
     public String findByFoodName(String name) {
         FoodEntity foodEntity = foodRepository.findByName(name);
-        FoodDTO foodDTO = convertToDTO(foodEntity);
+        FoodDTO foodDTO = foodEntity.convertToDTO();
         return foodDTO.toString();
     }
 
     public String findByFoodNameKorean(String nameKorean) {
         FoodEntity foodEntity = foodRepository.findByNameKorean(nameKorean);
-        FoodDTO foodDTO = convertToDTO(foodEntity);
+        FoodDTO foodDTO = foodEntity.convertToDTO();
         return foodDTO.toString();
     }
 
     public List<String> findAll() {
         List<FoodEntity> foodEntityList = foodRepository.findAll();
         return foodEntityList.stream()
-                .map(this::convertToDTO)
+                .map(FoodEntity::convertToDTO)
                 .map(FoodDTO::getName)
                 .collect(Collectors.toList());
     }

@@ -1,6 +1,7 @@
 package com.vinami.mariage.entity;
 
 
+import com.vinami.mariage.dto.FoodDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -18,4 +19,8 @@ public class FoodEntity {
 
     @Column(name = "name_korean")
     private String nameKorean;
+
+    public FoodDTO convertToDTO() {
+        return new FoodDTO(this.name, this.nameKorean);
+    }
 }

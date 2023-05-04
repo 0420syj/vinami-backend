@@ -1,5 +1,6 @@
 package com.vinami.mariage.dto;
 
+import com.vinami.mariage.entity.FoodEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
